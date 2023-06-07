@@ -8,7 +8,7 @@ public class Kiosk {
 	KioskObj.productLoad();
 		Disp.title();
 		xx: while (true) {
-			So.ln("[1. 시간 선택 /2. 음료 선택 /3. 음식 선택 /e. 선택완료]");
+			So.ln("[1. 시간 선택 /2. 음료 선택 /3. 음식 선택 /4. 도서대출/e. 선택완료]");
 			KioskObj.cmd = KioskObj.sc.next();
 			switch (KioskObj.cmd) {
 			case "1":
@@ -20,6 +20,10 @@ public class Kiosk {
 			case "3":
 				MenuFood.run();
 				break;
+			case "4":
+				MenuBookRental.run();
+				break;
+			
 			case "e":
 				int sum = 0;
 				for (Order o : KioskObj.basket) {
@@ -31,6 +35,12 @@ public class Kiosk {
 					}
 					if (null != o.selectedDrink) {
 						sum = sum + o.selectedDrink.price;
+					}
+					if (null != o.selectedComic) {
+						sum = sum + o.selectedComic.price;
+					}
+					if (null != o.selectedNovel) {
+						sum = sum + o.selectedNovel.price;
 					}
 				}
 					So.ln("선택상품 내역");
@@ -45,6 +55,12 @@ public class Kiosk {
 						}
 						if (null != o1.selectedFood) {
 							So.ln(o1.selectedFood.name);						
+						}
+						if (null != o1.selectedComic) {
+							So.ln(o1.selectedComic.name);						
+						}
+						if (null != o1.selectedNovel) {
+							So.ln(o1.selectedNovel.name);						
 						}
 					}
 					So.ln("===========================");
